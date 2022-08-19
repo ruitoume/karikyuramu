@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-{{Auth::user()->name}}
+@extends('layouts.app')
+@section('content')
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -8,8 +9,6 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        @extends('layouts.app')　
-        @section('content')
         <h1>Blog Name</h1>
         [<a href='/posts/create'>create</a>]
         <div class='posts'>
@@ -20,19 +19,12 @@
                     <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
                 </div>
             @endforeach
+            <br>
+            <div class='back'><a href='/'>back</a></div>
         </div>
         <div class='paginate'>
             {{ $posts->links() }}
         </div>
-        <div>
-          @foreach($questions as $question)
-            <div>
-              <a href="https://teratail.com/questions/{{ $question['id'] }}">
-                {{ $question['title'] }}
-              </a>
-             </div>
-          @endforeach
-        </div>
-    @endsection
     </body>
 </html>
+@endsection
